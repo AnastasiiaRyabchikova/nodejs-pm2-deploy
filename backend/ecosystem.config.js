@@ -14,7 +14,7 @@ module.exports = {
       user: DEPLOY_USER,
       host: DEPLOY_HOST,
       ref: DEPLOY_REF,
-      repo: 'https://github.com/yandex-praktikum/nodejs-mesto-project',
+      repo: 'https://github.com/AnastasiiaRyabchikova/nodejs-pm2-deploy',
       path: DEPLOY_PATH,
       'pre-deploy': `scp ./*.env ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}`,
       'post-deploy': 'npm i && npm run build',
