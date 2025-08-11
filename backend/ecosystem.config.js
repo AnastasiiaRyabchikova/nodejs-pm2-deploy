@@ -17,7 +17,7 @@ module.exports = {
       repo: 'https://github.com/AnastasiiaRyabchikova/nodejs-pm2-deploy',
       path: DEPLOY_PATH,
       // 'pre-deploy': `scp ./.env ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH} `,
-      'pre-deploy': 'ifconfig',
+      'pre-deploy': 'ip',
       'post-deploy': 'npm i && npm run build',
       ssh_options: [
         'StrictHostKeyChecking=no',
