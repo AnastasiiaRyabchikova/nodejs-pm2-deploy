@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const {
-  DEPLOY_USER, DEPLOY_HOST, DEPLOY_PATH, DEPLOY_REF = 'origin/master',
+  DEPLOY_USER, DEPLOY_HOST, DEPLOY_PATH, DEPLOY_REF = 'origin/master', JWT_SECRET,
 } = process.env;
 
 module.exports = {
@@ -9,6 +9,10 @@ module.exports = {
     name: 'nodejs-pm2-deploy-backend',
     script: './dist/app.js',
   }],
+  env_production: {
+    NODE_ENV: 'production',
+    JWT_SECRET,
+  },
   deploy: {
     production: {
       user: DEPLOY_USER,
@@ -16,8 +20,6 @@ module.exports = {
       ref: DEPLOY_REF,
       repo: 'https://github.com/AnastasiiaRyabchikova/nodejs-pm2-deploy',
       path: DEPLOY_PATH,
-      // 'pre-deploy': `scp ./.env ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH} `,
-      'pre-deploy': 'ip a',
       'post-deploy': 'npm i && npm run build',
       ssh_options: [
         'StrictHostKeyChecking=no',
