@@ -18,6 +18,9 @@ module.exports = {
       path: DEPLOY_PATH,
       'pre-deploy': `scp ./.env ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}`,
       'post-deploy': 'npm i && npm run build',
+      ssh_options: [
+        'StrictHostKeyChecking=no',
+      ],
     },
   },
 };
