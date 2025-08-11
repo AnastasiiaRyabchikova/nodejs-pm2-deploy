@@ -20,7 +20,7 @@ module.exports = {
       ref: DEPLOY_REF,
       repo: 'https://github.com/AnastasiiaRyabchikova/nodejs-pm2-deploy',
       path: DEPLOY_PATH,
-      'post-deploy': 'node -v',
+      'post-deploy': 'npm i && npm run build',
       ssh_options: [
         'StrictHostKeyChecking=no',
       ],
