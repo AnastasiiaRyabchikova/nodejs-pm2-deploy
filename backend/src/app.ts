@@ -14,10 +14,7 @@ const app = express();
 mongoose.connect(DB_ADDRESS);
 
 // Только для локальных тестов. Не используйте это в продакшене
-// app.use(cors({
-//   origin: 'https://project.ryabchulya.nomorepartiessbs.ru',
-//   credentials: true,
-// }));
+// app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
