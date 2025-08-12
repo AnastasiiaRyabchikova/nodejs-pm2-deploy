@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: '.env.deploy' });
 
 const {
   DEPLOY_USER, DEPLOY_HOST, DEPLOY_PATH, DEPLOY_REF = 'origin/master',
@@ -16,11 +16,8 @@ module.exports = {
       ref: DEPLOY_REF,
       repo: 'https://github.com/AnastasiiaRyabchikova/nodejs-pm2-deploy',
       path: `${DEPLOY_PATH}/backend`,
-      'pre-deploy-local': `scp ./.env ${process.env.DEPLOY_USER}@${process.env.DEPLOY_HOST}:${process.env.DEPLOY_PATH}/backend/shared/.env`,
-      'post-deploy': 'npm i && npm run build',
-      ssh_options: [
-        'StrictHostKeyChecking=no',
-      ],
+      'pre-deploy-local': `bash ./scripts/deployEnd.sh ${process.env.DEPLOY_USER}@${process.env.DEPLOY_HOST} ${process.env.DEPLOY_PATH}`,
+      'post-deploy': 'cd backend npm i && npm run build',
     },
   },
 };
